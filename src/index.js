@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore} from 'redux';
+import runTests from './mutations';
+
+runTests();
 
 const counter = (state = 0, action) => {
   switch (action.type) {
