@@ -37,6 +37,25 @@ const todos = (state = [], action) => {
   }
 };
 
+const visibilityFilter = (
+  state = 'SHOW_ALL',
+  action
+) => {
+  switch (action.type) {
+    case 'SET_VISIBILITY_FILTER':
+      return action.filter;
+    default:
+      return state;
+  }
+};
+
+const todoApp = (state = {}, action) => {
+  return {
+    todos: todos(state.todos, action),
+    visibilityFilter: visibilityFilter(state.visibilityFilter, action)
+  };
+};
+
 const testToggleTodo = () => {
   const stateBefore = [
     {
@@ -97,8 +116,7 @@ const testAddTodo = () => {
 };
 
 const imitateUsage = () => {
-  const store = createStore(todos);
-  console.log('add/toggle TODOs passed.');
+  const store = createStore(todoApp);
 
   console.log('Initial state:');
   console.log(store.getState());
@@ -132,10 +150,21 @@ const imitateUsage = () => {
   console.log('Current state:');
   console.log(store.getState());
   console.log('--------');
+
+  console.log('Dispatching SET_VISIBILITY_FILTER.');
+  store.dispatch({
+    type: 'SET_VISIBILITY_FILTER',
+    filter: 'SHOW_COMPLETED'
+  });
+  console.log('Current state:');
+  console.log(store.getState());
+  console.log('--------');
 };
 
 export const testTodos = () => {
   testAddTodo();
   testToggleTodo();
-  imitateUsage();
+  console.log('add/toggle TODOs passed.');
 };
+
+imitateUsage();
