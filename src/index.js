@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore} from 'redux';
-import runTests from './mutations';
+import runTests from './arrayMutations';
+import {runTodoTests} from './objectMutations';
 
 runTests();
+runTodoTests();
 
 const counter = (state = 0, action) => {
   switch (action.type) {
