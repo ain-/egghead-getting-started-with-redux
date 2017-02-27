@@ -40,12 +40,11 @@ const mapDispatchToLinkProps = (
   ownProps
 ) => {
   return {
-    onClick: () => {
+    onClick: () =>
       dispatch({
         type: 'SET_VISIBILITY_FILTER',
         filter: ownProps.filter
-      });
-    }
+      })
   };
 };
 
