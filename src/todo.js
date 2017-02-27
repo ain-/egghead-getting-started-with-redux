@@ -2,6 +2,7 @@ import {createStore, combineReducers} from 'redux';
 import {todos, visibilityFilter} from './todoListReducer';
 import ReactDOM from 'react-dom';
 import React from 'react';
+import {Provider} from 'react-redux';
 
 const Link = ({
   active,
@@ -193,21 +194,6 @@ const TodoApp = () => (
     <Footer />
   </div>
 );
-
-class Provider extends React.Component {
-  getChildContext() {
-    return {
-      store: this.props.store
-    };
-  }
-  render() {
-    return this.props.children;
-  }
-}
-
-Provider.childContextTypes = {
-  store: React.PropTypes.object
-};
 
 const todoApp = combineReducers({todos, visibilityFilter});
 ReactDOM.render(
